@@ -20,7 +20,7 @@ Quick start
 
 3. Set REQUEST_LOG_FORMAT in settings.py::
 
-    e.x : REQUEST_LOG_FORMAT = "$remote_addr - $remote_user [$time_local] \"$request\" $status $body_bytes_sent \"$http_referer\" \"$http_user_agent\" \"$http_x_forwarded_for\" \"$http_x_stub_client_info\" \"$sent_http_last_modified\""
+    REQUEST_LOG_FORMAT = "$remote_addr - $remote_user [$time_local] \"$request\" $status $body_bytes_sent \"$http_referer\" \"$http_user_agent\" \"$http_x_forwarded_for\" \"$http_x_stub_client_info\" \"$sent_http_last_modified\""
 
 4. To parse and populate log file::
 
