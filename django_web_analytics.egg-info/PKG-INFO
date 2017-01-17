@@ -1,0 +1,49 @@
+Metadata-Version: 1.1
+Name: django-web-analytics
+Version: 0.1
+Summary: A simple Django app to conduct Web-based polls.
+Home-page: https://www.example.com/
+Author: Dalia Daud
+Author-email: daliadaud@gmail.com
+License: BSD License
+Description: ==============
+        WEB ANALYTICS
+        ==============
+        
+        WEB ANALYTICS is a simple Django app to store and query web analytics
+        
+        
+        Quick start
+        -----------
+        
+        1. Add "web_analytics" to your INSTALLED_APPS setting like this::
+        
+            INSTALLED_APPS = [
+                ...
+                'web_analytics',
+            ]
+        
+        
+        2. Run `python manage.py migrate` to create the web_analytics models.
+        
+        3. Set REQUEST_LOG_FORMAT in settings.py::
+        
+            e.x : REQUEST_LOG_FORMAT = "$remote_addr - $remote_user [$time_local] \"$request\" $status $body_bytes_sent \"$http_referer\" \"$http_user_agent\" \"$http_x_forwarded_for\" \"$http_x_stub_client_info\" \"$sent_http_last_modified\""
+        
+        4. To populate log file::
+        
+            python manage.py populatelogfile --file file.log
+        
+Platform: UNKNOWN
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Django
+Classifier: Framework :: Django :: 1.10
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Topic :: Internet :: WWW/HTTP
+Classifier: Topic :: Internet :: WWW/HTTP :: Dynamic Content
