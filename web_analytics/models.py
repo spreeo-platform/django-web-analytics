@@ -74,7 +74,7 @@ class RequestLog(models.Model):
         parsed_query = parse_qs(parsed_url.query)
 
         if RequestLog.objects.filter(date=date).exists():
-            return
+            return None
 
         for key, value in data.items():
             if isinstance(value, dict):
@@ -84,9 +84,9 @@ class RequestLog(models.Model):
             if key == 'sent_http_last_modified':
                 response_headers[key] = value
 
-        RequestLog.objects.create(remote_addr=data.get('remote_addr', "-"), date=date, method=method, path=parsed_url.path,
-                                  status_code=data.get('status', "-"), user_agent=data.get('http_user_agent', "-"), request_headers=request_headers,
-                                  response_headers=response_headers, query_strings=parsed_query, parsed_raw_data=data)
+        return RequestLog.objects.create(remote_addr=data.get('remote_addr', "-"), date=date, method=method, path=parsed_url.path,
+                                         status_code=data.get('status', "-"), user_agent=data.get('http_user_agent', "-"), request_headers=request_headers,
+                                         response_headers=response_headers, query_strings=parsed_query, parsed_raw_data=data)
 
     @staticmethod
     def parse_log_entry(entry):
