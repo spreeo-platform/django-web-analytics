@@ -21,24 +21,10 @@ import datetime
 from urllib.parse import urlparse, parse_qs
 import codecs
 from django.conf import settings
+import json
 TIME_LOCAL_FORMAT = "%d/%b/%Y:%H:%M:%S %z"
 
 # Create your models here.
-
-
-def string_to_dict(string):
-    s = string.replace("{", "")
-    final_string = s.replace("}", "")
-    l = final_string.split(",")
-
-    d = {}
-    for i in l:
-        key_value = i.split(":")
-        m = key_value[0].strip('\'')
-        m = m.replace("\"", "")
-        d[m] = key_value[1].strip('"\'')
-
-    return d
 
 
 class RequestLog(models.Model):
@@ -120,5 +106,5 @@ class RequestLog(models.Model):
         for key, value in d.items():
             if value.startswith('{'):
                 new_v = codecs.escape_decode(value)
-                d[key] = string_to_dict(new_v[0].decode('utf-8'))
+                d[key] = json.loads(new_v[0].decode('utf-8'))
         RequestLog.create_request_log(data=d)
