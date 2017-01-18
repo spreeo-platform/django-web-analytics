@@ -59,6 +59,9 @@ class RequestLog(models.Model):
 
     @staticmethod
     def create_request_log(data={}):
+        if RequestLog.objects.filter(parsed_raw_data=data).exists():
+            return None
+        
         string_date = data.get('time_local', "")
         date = datetime.datetime.strptime(string_date, TIME_LOCAL_FORMAT)
         request_headers = {}
@@ -72,9 +75,6 @@ class RequestLog(models.Model):
 
         parsed_url = urlparse(url=url)
         parsed_query = parse_qs(parsed_url.query)
-
-        if RequestLog.objects.filter(date=date).exists():
-            return None
 
         for key, value in data.items():
             if isinstance(value, dict):
