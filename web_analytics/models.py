@@ -121,5 +121,4 @@ class RequestLog(models.Model):
             if value.startswith('{'):
                 new_v = codecs.escape_decode(value)
                 d[key] = string_to_dict(new_v[0].decode('utf-8'))
-
-            RequestLog.create_request_log(data=d)
+        RequestLog.create_request_log(data=d)
