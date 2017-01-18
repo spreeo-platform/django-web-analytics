@@ -31,3 +31,8 @@ Quick start
     from web_analytics.models import RequestLog
 
     RequestLog.parse_log_entry(entry=entry)
+
+6. Run tail program for real time monitoring, parsing and populating of log file::
+
+    python manage.py runtail --file file.log
+
